@@ -11,12 +11,12 @@ public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletI
    
    @Override
    protected Class<?>[] getRootConfigClasses(){
-      return new Class[] { JPAConfiguration.class, AppWebConfiguration.class };
+      return null;
    }
 
    @Override
    protected Class<?>[] getServletConfigClasses(){
-      return null;
+      return new Class[]{ AppWebConfiguration.class, JPAConfiguration.class };
    }
 
    @Override

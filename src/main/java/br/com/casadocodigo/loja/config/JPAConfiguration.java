@@ -19,19 +19,23 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class JPAConfiguration{
 
+	/**
+	 * Abstração do arquivo persistence.xml
+	 */
    @Bean
    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource){
       LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
       em.setDataSource(dataSource);
       em.setPackagesToScan(new String[] { "br.com.casadocodigo.loja.model" });
-
       JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
       em.setJpaVendorAdapter(vendorAdapter);
       em.setJpaProperties(additionalProperties());
-
       return em;
    }
 
+	/**
+	 * Configura os parâmetros de conexão com o banco de dados
+	 */
    @Bean
    public DataSource dataSource(Environment environment){
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -42,6 +46,9 @@ public class JPAConfiguration{
       return dataSource;
    }
 
+   /**
+    * Habilita o controle de transações
+    */
    @Bean
    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
       JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -54,7 +61,10 @@ public class JPAConfiguration{
       return new PersistenceExceptionTranslationPostProcessor();
    }
 
-   Properties additionalProperties(){
+	/**
+	 * Adiciona mais parâmetros de configuração
+	 */
+   private Properties additionalProperties(){
       Properties properties = new Properties();
       properties.setProperty("hibernate.hbm2ddl.auto", "update");
       properties.setProperty("hibernate.show_sql", "true");
