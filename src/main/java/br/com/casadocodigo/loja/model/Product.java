@@ -20,7 +20,7 @@ public class Product {
 	
 	@ElementCollection
 	private List<Price> prices = new ArrayList<Price>();
-		
+	
 	public Product(){
 		
 	}
