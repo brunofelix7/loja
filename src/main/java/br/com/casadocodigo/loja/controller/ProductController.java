@@ -33,7 +33,7 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView save(@Valid Product product, BindingResult result, RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
-			return form();
+			return form(product);
 		}
 		productDAO.save(product);
 		redirectAttributes.addFlashAttribute("message", "Produto cadastrado com sucesso!");
@@ -41,7 +41,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/form")
-	public ModelAndView form(){
+	public ModelAndView form(Product product){
 		ModelAndView mv = new ModelAndView("products/form");
 		mv.addObject("types", BookType.values());
 		return mv;
