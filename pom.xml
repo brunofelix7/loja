@@ -79,7 +79,21 @@
 	    <version>1.8.0.10</version>
 	    <scope>test</scope>
 	</dependency>
-        
+	
+	<!-- AmazonWS -->
+	<dependency>
+	    <groupId>com.amazonaws</groupId>
+	    <artifactId>aws-java-sdk</artifactId>
+	    <version>1.11.226</version>
+	</dependency>
+	
+	<!-- s3Ninja -->
+	<dependency>
+	    <groupId>com.scireum</groupId>
+	    <artifactId>s3ninja</artifactId>
+	    <version>2.7</version>
+	</dependency>
+	
     <!-- JSTL -->
     <dependency>
       <groupId>javax.servlet.jsp.jstl</groupId>

@@ -19,6 +19,7 @@ public class Product {
 	private String title;
 	private String description;
 	private Integer pages;
+	private String summaryPath;
 	
 	@DateTimeFormat
 	private Calendar releaseDate;
@@ -30,12 +31,13 @@ public class Product {
 		
 	}
 
-	public Product(Long id, String title, String description, Integer pages, Calendar releaseDate, List<Price> prices) {
+	public Product(Long id, String title, String description, Integer pages, String summaryPath, Calendar releaseDate, List<Price> prices) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.pages = pages;
+		this.summaryPath = summaryPath;
 		this.releaseDate = releaseDate;
 		this.prices = prices;
 	}
@@ -72,6 +74,14 @@ public class Product {
 		this.pages = pages;
 	}
 
+	public String getSummaryPath() {
+		return summaryPath;
+	}
+
+	public void setSummaryPath(String summaryPath) {
+		this.summaryPath = summaryPath;
+	}
+
 	public Calendar getReleaseDate() {
 		return releaseDate;
 	}
@@ -91,7 +101,7 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", title=" + title + ", description=" + description + ", pages=" + pages
-				+ ", releaseDate=" + releaseDate + ", prices=" + prices + "]";
+				+ ", summaryPath=" + summaryPath + ", releaseDate=" + releaseDate + ", prices=" + prices + "]";
 	}
 
 }

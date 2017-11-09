@@ -40,7 +40,9 @@
 	<c:url value="/" var="home" />
 	<c:url value="/produtos" var="produtos" />
 	
-	<form:form method="POST" action="${produtos}" style="width: 40%;" commandName="product">
+	<!-- O atributo enctype serve para indicarmos como queremos mandar os dados do navegador para o servidor -->
+	<!-- O default é application/x-www-form- urlencoded -->
+	<form:form method="POST" action="${produtos}" style="width: 40%;" commandName="product" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="title" style="font-weight:bold;">Título</label> 
 			<form:input path="title" class="form-control" placeholder="Ex: Spring MVC - Domine o Principal Framework Web" />
@@ -58,8 +60,13 @@
 		</div>
 		<div class="form-group">
 			<label for="releaseDate" style="font-weight:bold;">Data de lançamento</label> 
-			<form:input type="date" path="releaseDate"/>
-			<form:errors path="releaseDate"/>
+			<form:input type="date" path="releaseDate" class="form-control" style="width: 40%;" />
+			<form:errors path="releaseDate" style="color:red; font-size:12px;" />
+		</div>
+		<div class="form-group">
+			<label for="summary" style="font-weight:bold;">Sumário</label>
+			<input type="file" name="summary" />
+			<form:errors path="summaryPath" style="color:red; font-size:12px;" />
 		</div>
 		<!-- Para passar uma lista de valores do formulário para o controller do Spring MVC, é necessário o uso do [] -->
 		<!-- Usamos o varStatus para conseguir ter acesso ao índice atual do loop e, com isso, ir construindo os inputs. -->
