@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,21 +45,29 @@ public class ProductController {
 		product.setSummaryPath(webPath);
 		productDAO.save(product);
 		redirectAttributes.addFlashAttribute("message", "Produto cadastrado com sucesso!");
-		return new  ModelAndView("redirect:produtos");
+		return new ModelAndView("redirect:produtos");
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/form")
 	public ModelAndView form(Product product){
-		ModelAndView mv = new ModelAndView("products/form");
-		mv.addObject("types", BookType.values());
-		return mv;
+		ModelAndView modelAndView = new ModelAndView("products/form");
+		modelAndView.addObject("types", BookType.values());
+		return modelAndView;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list(){
-		ModelAndView mv = new ModelAndView("products/list");
-		mv.addObject("products", productDAO.findAll());
-		return mv;
+		ModelAndView modelAndView = new ModelAndView("products/list");
+		modelAndView.addObject("products", productDAO.findAll());
+		return modelAndView;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/show/{id}")
+	public ModelAndView show(@PathVariable("id") Long id){
+		ModelAndView modelAndView = new ModelAndView("products/show");
+		Product product = productDAO.findById(id);
+		modelAndView.addObject("product", product);
+		return modelAndView;
 	}
 	
 }

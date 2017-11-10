@@ -20,4 +20,11 @@ public class ProductDAO {
 		return entityManager.createQuery("select distinct(p) from Product p join fetch p.prices", Product.class).getResultList();
 	}
 
+	public Product findById(Long id) {
+		return entityManager.createQuery("select distinct(p) from Product p "
+				+ "join fetch p.prices price where p.id = :id", Product.class)
+				.setParameter("id", id)
+				.getSingleResult();
+	}
+
 }
